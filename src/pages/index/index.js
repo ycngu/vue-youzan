@@ -52,7 +52,7 @@ new Vue({
       axios.get(url.banner).then(res=>{
         this.bannerLists = res.data.lists
       })
-    }
+    },
   },
   components:{
     Foot,
