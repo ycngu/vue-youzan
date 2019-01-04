@@ -4,6 +4,11 @@ let url ={
     topList:'category/topList',
     subList:'category/subList',
     rank:'category/rank',
+    list:'search/list',
+    details:'goods/details',
+    deal:'goods/deal',
+    evaluation:'goods/evaluation',
+    
 }
 
 //真实环境和开发环境切换
