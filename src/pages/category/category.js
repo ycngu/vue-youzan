@@ -5,8 +5,8 @@ import Vue from 'vue'
 import axios from 'axios'
 import url from 'js/api.js'
 
-import Foot from '@/components/Foot.vue'
-
+// import Foot from '@/components/Foot.vue'
+import mixin from 'js/mixin.js'
 
 new Vue({
   el: '#app',
@@ -43,14 +43,15 @@ new Vue({
     },
     toSearch(list) {
       location.href = `search.html?keyword=${list.name}&id=${list.id}`
-    }
+    },
   },
-  components: {
-    Foot
-  },
-  filters: {
-      numFilter(price){
-        return price.toFixed(2)
-      }
-  }
+  // components: {
+  //   Foot
+  // },
+  // filters: {
+  //     numFilter(price){
+  //       return price.toFixed(2)
+  //     }
+  // }
+  mixins: [mixin]
 })

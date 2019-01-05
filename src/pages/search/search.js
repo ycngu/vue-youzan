@@ -6,7 +6,8 @@ import axios from 'axios'
 import url from 'js/api.js'
 
 import qs from 'qs'
-
+import mixin from 'js/mixin.js'
+import velocity from 'velocity-animate'
 let {
   keyword,
   id
@@ -18,6 +19,7 @@ new Vue({
   data: {
     searchList: null,
     keyword,
+    isShow: false,
   },
   created() {
       this.getSearchList()
@@ -30,7 +32,19 @@ new Vue({
       }).then(res=>{
           this.searchList = res.data.lists
       })
-    }
+    },
+    move(){
+      console.log('move')
+      console.log(document.documentElement.scrollTop)
+      if(document.documentElement.scrollTop > 300){
+        this.isShow = true
+      } else {
+        this.isShow = false
+      }
+    },
+    toTop(){
+      velocity(document.body, 'scroll', {duration: 500})
+    },
   },
-
+  mixins:[mixin]
 })
