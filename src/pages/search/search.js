@@ -7,7 +7,10 @@ import url from 'js/api.js'
 
 import qs from 'qs'
 import mixin from 'js/mixin.js'
-import velocity from 'velocity-animate'
+// import velocity from 'velocity-animate'
+import { InfiniteScroll } from 'mint-ui'
+
+Vue.use(InfiniteScroll)
 let {
   keyword,
   id
@@ -20,30 +23,50 @@ new Vue({
     searchList: null,
     keyword,
     isShow: false,
+    loading:false,
+    pageNum: 1,
+    pageSize: 6,
+    allLoaded: false,
   },
   created() {
       this.getSearchList()
   },
   methods: {
     getSearchList() {
+      if(this.allLoaded) return
+
+      this.loading = true
       axios.get(url.searchList, {
         keyword,
-        id
+        id,
+        pageNumL:this.pageNum,
+        pageSize:this.pageSize
       }).then(res=>{
-          this.searchList = res.data.lists
+          let curList = res.data.lists
+          if(curList.length < this.pageSize) {
+            this.allLoaded = ture
+          }
+
+          if(this.searchList){
+            this.searchList = this.searchList.concat(curList)
+          } else {
+            this.searchList = curList
+          }
+
+          this.pageNum ++
+          this.loading = false
       })
     },
-    move(){
-      console.log('move')
-      console.log(document.documentElement.scrollTop)
-      if(document.documentElement.scrollTop > 300){
-        this.isShow = true
-      } else {
-        this.isShow = false
-      }
-    },
+    // move(){
+    //   if(document.documentElement.scrollTop > 300){
+    //     this.isShow = true
+    //   } else {
+    //     this.isShow = false
+    //   }
+    // },
     toTop(){
-      velocity(document.body, 'scroll', {duration: 500})
+      document.querySelector('.js-list').scrollIntoView()
+      window.scrollTo(0,0)
     },
   },
   mixins:[mixin]
