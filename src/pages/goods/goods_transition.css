@@ -1,0 +1,14 @@
+.transY-enter-active, .transY-leave-active {
+    transition: all 300ms ease;
+    transform: translateY(0);
+  }
+  .transY-enter, .transY-leave-to{
+    transform: translateY(100%);
+  }
+
+.fade-enter-active, .fade-leave-active {
+    transition: all .5s;
+  }
+  .fade-enter, .fade-leave-to{
+      opacity: 0;
+  }

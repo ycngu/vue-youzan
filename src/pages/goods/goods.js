@@ -4,6 +4,7 @@ import './goods.css'
 import './goods_theme.css'
 import './goods_mars.css'
 import './goods_sku.css'
+import './goods_transition.css'
 
 import Vue from 'vue'
 import url from 'js/api'
@@ -25,6 +26,12 @@ new Vue({
     tabIndex: 0,
     dealLists: null,
     bannerLists: null,
+    skuType: 1,
+    showSku: false,
+    skuNum: 1,
+    isAddCart: false,
+    showAddMessage: false,
+    id,
   },
   created() {
     this.getDetails()
@@ -56,10 +63,44 @@ new Vue({
       if (this.tabIndex === 1) {
         this.getDeal()
       }
+    },
+    chooseSku(type) {
+      this.skuType = type
+      this.showSku = true
+    },
+    changeNum(num) {
+      if (num < 0 && this.skuNum === 1) return
+      this.skuNum += num
+    },
+    addCart() {
+
+      axios.post(url.addCart, {
+        id,
+        number: this.skuNum
+      }).then(res => {
+        if (res.data.status === 200) {
+
+          this.showSku = false
+          this.isAddCart = true
+          this.showAddMessage = true
+          console.log('res.data.status === 200')
+          setTimeout(() => {
+            this.showAddMessage = false
+          }, 1300);
+        }
+      })
     }
   },
-  components:{
-      Swipe
+  components: {
+    Swipe
+  },
+  watch: {
+    showSku(val, oldval) {
+      document.body.style.overflow = val ? 'hidden' : 'auto'
+      document.querySelector('html').style.overflow = val ? 'hidden' : 'auto'
+      document.body.style.height = val ? '100%' : 'auto'
+      document.querySelector('html').style.overflow = val ? '100%' : 'auto'
+    }
   },
   mixins: [mixin]
 })
