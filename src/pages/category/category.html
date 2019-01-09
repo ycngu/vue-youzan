@@ -74,7 +74,7 @@
                   </div>
                   <ul>
                     <li class="goods-item" v-for="(list, index) in rankData.hotGoods">
-                      <a href="https://h5.youzan.com/v2/showcase/goods?alias=27cjv5wdsb4to&amp;source=yzapp&amp;f_platform=yzapp">
+                      <a :href="'goods.html?id='+list.id">
                         <div class="thumb badge center-img">
                           <img :src="list.img">
                           <span class="num">{{index+1}}</span>
@@ -94,18 +94,18 @@
                 <div class="hot-shops" style="position: relative;">
                   <div class="hot-title">
                     <p class="pull-left">TOP店铺榜</p>
-                    <a href="list.clickUrl" class="pull-right icon-right">更多</a>
+                    <a :href="list.clickUrl" class="pull-right icon-right">更多</a>
                   </div>
                   <ul>
                     <li class="shop-item" v-for="(list, index) in rankData.hotShops">
                       <div class="shop-title">
                         <span class="badge">{{index + 1}}</span>
-                        <a href="list.clickUrl">{{list.name}}</a>
+                        <a :href="list.clickUrl">{{list.name}}</a>
                         <span class="follows"> / 关注度: {{list.follows}}</span>
                       </div>
                       <ul class="shop-images">
                         <li v-for=" img in list.imgs">
-                          <a href="list.clickUrl"><img
+                          <a :href="list.clickUrl"><img
                               :src="img"></a>
                         </li>
                       </ul>

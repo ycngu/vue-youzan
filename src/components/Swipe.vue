@@ -27,7 +27,9 @@ export default {
   mounted() {
     new Swiper(".swiper-container", {
       loop: true,
-      pagination: ".swiper-pagination",
+      pagination: {
+       el: '.swiper-pagination',
+      },
       autoplay: {
         delay: 3000
       }
