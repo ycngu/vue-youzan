@@ -8,7 +8,12 @@ let url ={
     details:'goods/details',
     deal:'goods/deal',
     evaluation:'goods/evaluation',
-    addCart:'cart/add',
+    cartAdd: '/cart/add',
+    cartRemove: '/cart/remove',
+    cartMremove: '/cart/mremove',
+    cartReduce: '/cart/reduce',
+    cartLists: '/cart/list',
+    cartUpdate: '/cart/update',
 }
 
 //真实环境和开发环境切换
