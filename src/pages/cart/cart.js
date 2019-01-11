@@ -6,8 +6,8 @@ import Vue from 'vue'
 import axios from 'axios'
 import url from 'js/api.js'
 import mixin from 'js/mixin.js'
-
-import qs from 'qs'
+import Volecity from 'velocity-animate'
+import Cart from 'js/cartServer.js'
 
 new Vue({
   el: '#app',
@@ -137,19 +137,25 @@ new Vue({
       this.editingShopIndex = shop.editing ? shopIndex : -1
     },
     add(good) {
-      axios.get(url.cartAdd, {
-        id: good.id,
-        number: 1
-      }).then(res => {
+      // axios.get(url.cartAdd, {
+      //   id: good.id,
+      //   number: 1
+      // }).then(res => {
+      //   good.number++
+      // })
+      Cart.add(good.id).then(res=>{
         good.number++
       })
     },
     reduce(good) {
       if (good.number === 1) return
-      axios.get(url.cartReduce, {
-        id: good.id,
-        number: 1
-      }).then(res => {
+      // axios.get(url.cartReduce, {
+      //   id: good.id,
+      //   number: 1
+      // }).then(res => {
+      //   good.number--
+      // })
+      Cart.reduce(good.id).then(res=>{
         good.number--
       })
     },
@@ -220,6 +226,22 @@ new Vue({
         shop.editingMsg = '编辑'
       })
     },
+    start(e,good){
+      good.startX = e.changedTouches[0].clientX
+    },
+    end(e,shopIndex,good,goodIndex) {
+      let endX = e.changedTouches[0].clientX
+      let left = '0'
+      if(good.startX - endX > 100) {
+        left = '-60px'
+      }
+      if(endX - good.startX > 100) {
+        left = '0px'
+      }
+      Volecity(this.$refs[`goods-${shopIndex}-${goodIndex}`], {
+        left
+      })
+    }
   },
   mixins: [mixin]
 })
