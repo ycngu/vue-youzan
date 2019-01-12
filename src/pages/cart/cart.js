@@ -174,7 +174,7 @@ new Vue({
       this.removeMsg = `确定将所选 ${this.removeLists.length} 个商品删除？`
     },
     removeConfirm() {
-      if (this.removeMsg === '确定要删除该商品吗？') {
+      if (this.removeMsg === '确定要删除该商品吗?') {
         let {
           shop,
           shopIndex,
