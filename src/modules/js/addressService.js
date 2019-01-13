@@ -3,22 +3,22 @@ import url from './api.js'
 
 class Address {
   static list() {
-    return fetch(url.addressLists)
+    return fetch.get(url.addressLists)
   }
 
   static add(data) {
-    return fetch(url.addressAdd, data)
+    return fetch.post(url.addressAdd, data)
   }
 
   static remove(id) {
-    return fetch(url.addressRemove, id)
+    return fetch.post(url.addressRemove, id)
   }
 
   static update(data) {
-    return fetch(url.addressUpdate, data)
+    return fetch.post(url.addressUpdate, data)
   }
   static SetDefault(id) {
-    return fetch(url.addressSetDefault, id)
+    return fetch.post(url.addressSetDefault, id)
   }
 }
 
