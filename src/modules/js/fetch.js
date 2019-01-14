@@ -11,7 +11,7 @@ function fetchPost(url, data) {
       //   location.href = 'login.html'
       //   resolve(res)
       // } 
-      reject(res)
+      resolve(res)
     }).catch(error => {
         reject(error)
     })
@@ -29,7 +29,7 @@ function fetchGet(url, data) {
       //   location.href = 'login.html'
       //   resolve(res)
       // } 
-      reject(res)
+      resolve(res)
     }).catch(error => {
         reject(error)
     })

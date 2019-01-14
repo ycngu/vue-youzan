@@ -28,23 +28,32 @@
 
 
 <script>
-import Address from "js/addressService.js";
+// import Address from "js/addressService.js";
 import url from "js/api.js";
-import axios from "axios";
+// import axios from "axios";
 console.log(url.addressLists);
 console.log(url.addressAdd);
 export default {
-  data() {
-    return {
-      lists: null
-    };
+  // data() {
+  //   return {
+  //     lists: null
+  //   };
+  // },
+  computed:{
+    lists(){
+      return this.$store.state.lists
+    }
   },
   created() {
+    if(!this.lists){
+      this.$store.dispatch('getLists')
+    }
     // Address.list().then(res=>{
     //   console.log(res.data)
     //   this.lists = res.data.lists
     // })
-    this.getAddressList();
+    // this.getAddressList();
+
   },
   methods: {
     toEdit(list) {

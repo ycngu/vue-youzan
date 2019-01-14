@@ -18,33 +18,42 @@ export default {
       districtList:null
     }
   },
+  computed: {
+      lists(){
+          return this.$store.state.lists
+      }
+  },
   methods: {
       save(){
           let {name,tel,provinceValue,cityValue,districtValue,address} = this
           let data = {name,tel,provinceValue,cityValue,districtValue,address}
           if(this.type ==="add"){
-            axios.post(url.addressAdd,data).then(res=>{
-                this.$router.go(-1)
-            })
+            // axios.post(url.addressAdd,data).then(res=>{
+            //     this.$router.go(-1)
+            // })
+            this.$store.dispatch('addAction', data)
           }
           if(this.type ==="edit"){
             data.id = this.id
-            axios.post(url.addressUpdate,data).then(res=>{
-                this.$router.go(-1)
-            })
+            // axios.post(url.addressUpdate,data).then(res=>{
+            //     this.$router.go(-1)
+            // })
+            this.$store.dispatch('updateAction', data)
           }
       },
       remove(){
         if(window.confirm("确认删除？")){
-            axios.post(url.addressRemove,this.id).then(res=>{
-                this.$router.go(-1)
-            })
+            // axios.post(url.addressRemove,this.id).then(res=>{
+            //     this.$router.go(-1)
+            // })
+            this.$store.dispatch('removeAction',this.id)
         }
       },
       setDefault(){
-        axios.post(url.addressSetDefault,this.id).then(res=>{
-            this.$router.go(-1)
-        })
+        // axios.post(url.addressSetDefault,this.id).then(res=>{
+        //     this.$router.go(-1)
+        // })
+        this.$store.dispatch('setDefaultAction',this.id)
       }
   },
   created() {
@@ -61,6 +70,12 @@ export default {
       }
   },
   watch: {
+      lists:{
+          handler(){
+            this.$router.go(-1)
+          },
+          deep:true
+      },
     provinceValue(val){
         if(val === -1) return
         let list = this.addressData.list
