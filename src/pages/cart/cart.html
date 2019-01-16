@@ -103,7 +103,7 @@
               </div>
 
             </div>
-            <div class="js-invalid-goods shop-list">
+            <div class="js-invalid-goods shop-list" v-show="showInvalid">
               <p class="block invalid-list-title">
                 以下商品无法一起购买
               </p>
@@ -138,7 +138,7 @@
                   </li>
                 </ul>
                 <div class="center clear-block">
-                  <button class="btn clear-btn js-clear">清空失效商品</button>
+                  <button class="btn clear-btn js-clear" @click="clearInvalid">清空失效商品</button>
                 </div>
               </div>
             </div>

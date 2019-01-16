@@ -19,6 +19,7 @@ new Vue({
     removePopup: false,
     removeData: null,
     removeMsg: '',
+    showInvalid:true,
   },
   created() {
     this.getLists()
@@ -241,6 +242,9 @@ new Vue({
       Volecity(this.$refs[`goods-${shopIndex}-${goodIndex}`], {
         left
       })
+    },
+    clearInvalid(){
+      this.showInvalid = false
     }
   },
   mixins: [mixin]
