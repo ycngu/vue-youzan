@@ -182,7 +182,7 @@ new Vue({
           good,
           goodIndex
         } = this.removeData
-        axios.get(url.cartRemove, {
+        axios.post(url.cartRemove, {
           id: good.id,
         }).then(res => {
           shop.goodsList.splice(goodIndex, 1)
@@ -206,7 +206,7 @@ new Vue({
               return item.id == good.id
             })
             if (index === -1) {
-              arr.push(good)
+              arr.push(good)  
             }
           })
           if (arr.length) {
