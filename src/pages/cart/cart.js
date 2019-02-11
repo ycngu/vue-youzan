@@ -19,7 +19,8 @@ new Vue({
     removePopup: false,
     removeData: null,
     removeMsg: '',
-    showInvalid:true,
+    showInvalid: true,
+    clearCart: false,
   },
   created() {
     this.getLists()
@@ -226,6 +227,12 @@ new Vue({
         shop.editing = false
         shop.editingMsg = '编辑'
       })
+    },
+    clearcart() {
+      this.clearCart = true
+    },
+    clearConfirm() {
+      this.clearCart = false
     },
     start(e,good){
       good.startX = e.changedTouches[0].clientX
