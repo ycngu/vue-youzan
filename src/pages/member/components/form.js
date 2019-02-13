@@ -25,8 +25,11 @@ export default {
   },
   methods: {
       save(){
+        let districtName = document.querySelector(`option[value='${this.districtValue}']`).innerText
+        let cityName = document.querySelector(`option[value='${this.cityValue}']`).innerText
+        let provinceName = document.querySelector(`option[value='${this.provinceValue}']`).innerText
           let {name,tel,provinceValue,cityValue,districtValue,address} = this
-          let data = {name,tel,provinceValue,cityValue,districtValue,address}
+          let data = {name,tel,provinceValue,cityValue,districtValue,address,districtName,cityName,provinceName}
           if(this.type ==="add"){
             // axios.post(url.addressAdd,data).then(res=>{
             //     this.$router.go(-1)

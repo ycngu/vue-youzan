@@ -31,8 +31,6 @@
 // import Address from "js/addressService.js";
 import url from "js/api.js";
 // import axios from "axios";
-console.log(url.addressLists);
-console.log(url.addressAdd);
 export default {
   // data() {
   //   return {
