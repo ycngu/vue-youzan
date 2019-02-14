@@ -32,8 +32,7 @@ const store = new Vuex.Store({
         state.lists = lists
     },
     setDefault(state, id) {
-        let lists = state.lists
-        lists.forEach(item => {
+        state.lists.forEach(item => {
             if (item.id == id){
                 item.isDefault = true
             } else {
@@ -62,7 +61,6 @@ const store = new Vuex.Store({
     },
     updateAction({commit}, instance){
         Address.update(instance).then(res=>{
-            console.log(instance)
             commit('update', instance)
         })
     },
